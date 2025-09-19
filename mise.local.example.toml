@@ -1,2 +1,5 @@
 [env]
-DISCORD_TOKEN = "your-discord-bot-token"
+DISCORD_TOKEN = { value = "your-discord-bot-token", redact = true }
+DISCORD_APP_ID = { value = "your-discord-app-id", redact = true }
+DISCORD_PUBLIC_KEY = { value = "your-discord-public-key", redact = true }
+DISCORD_GUILD_ID = "your-discord-service-id"

@@ -3,7 +3,7 @@ node = "24.8.0"
 pnpm = "10.17.0"
 
 [tasks.dev]
-run = "ts-node src/index.ts"
+run = "pnpm tsx watch src/index.ts"
 
 [tasks.build]
 run = "tsc"
@@ -13,3 +13,6 @@ run = "node dist/index.js"
 
 [tasks.test]
 run = "echo 'no tests yet 🤡'"
+
+[tasks.register-commands]
+run = "pnpm tsx src/registerCommands.ts"
