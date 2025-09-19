@@ -3,3 +3,8 @@ DISCORD_TOKEN = { value = "your-discord-bot-token", redact = true }
 DISCORD_APP_ID = { value = "your-discord-app-id", redact = true }
 DISCORD_PUBLIC_KEY = { value = "your-discord-public-key", redact = true }
 DISCORD_GUILD_ID = "your-discord-service-id"
+GITHUB_APP_ID = { value = "your-github-app-id", redact = true }
+GITHUB_APP_INSTALLATION_ID = { value = "your-github-app-install-id", redact = true }
+GITHUB_APP_PRIVATE_KEY_PATH = { value = "the-path-to-your-private-key", redact = true }
+GITHUB_OWNER = "your-github-org"
+GITHUB_REPO = "your-github-repo"
