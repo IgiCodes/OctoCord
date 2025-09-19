@@ -1,3 +1,15 @@
 [tools]
 node = "24.8.0"
 pnpm = "10.17.0"
+
+[tasks.dev]
+run = "ts-node src/index.ts"
+
+[tasks.build]
+run = "tsc"
+
+[tasks.start]
+run = "node dist/index.js"
+
+[tasks.test]
+run = "echo 'no tests yet 🤡'"
