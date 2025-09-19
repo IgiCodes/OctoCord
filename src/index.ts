@@ -1,4 +1,4 @@
-import { DiscordClient } from './discord/discordClient';
+import { discordClient } from './discord/client';
 import { DISCORD_TOKEN } from './config';
 
 import { ready } from './discord/events/ready';
@@ -9,11 +9,11 @@ import { ClientEvents } from 'discord.js';
 
 function register<K extends keyof ClientEvents>(event: Event<K>) {
   if (event.once) {
-    DiscordClient.once(event.name, (...args: ClientEvents[K]) => {
+    discordClient.once(event.name, (...args: ClientEvents[K]) => {
       event.execute(...args);
     });
   } else {
-    DiscordClient.on(event.name, (...args: ClientEvents[K]) => {
+    discordClient.on(event.name, (...args: ClientEvents[K]) => {
       event.execute(...args);
     });
   }
@@ -22,4 +22,4 @@ function register<K extends keyof ClientEvents>(event: Event<K>) {
 register(ready);
 register(interactionCreate);
 
-DiscordClient.login(DISCORD_TOKEN);
+discordClient.login(DISCORD_TOKEN);
