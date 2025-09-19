@@ -22,8 +22,8 @@ Create, sync, and manage GitHub issues directly from a Discord forum channel.
 
 | Command          | Description                                      |
 |------------------|--------------------------------------------------|
-| `/ping`          | Sanity check — replies with `🏓 Pong!`            |
-| `/create-issue`  | Opens a modal to create a GitHub issue with title and description, followed by a label selector |
+| /ping          | Sanity check — replies with "🏓 Pong!"            |
+| /create-issue  | Opens a modal to create a GitHub issue with title and description, followed by a label selector |
 
 ---
 
@@ -87,22 +87,12 @@ mise run start
 
 ## 📂 Project Structure
 
-```
-src/
-  discord/
-    commands/        # Slash command definitions
-    events/          # Discord event handlers
-    types.ts         # Shared type definitions
-  github/
-    client.ts        # GitHub App client (Octokit)
-  handlers/
-    issueHandlers.ts # Modal + label flow for /create-issue
-  storage/
-    tempStore.ts     # In-memory draft storage
-  config/
-    index.ts         # Loads environment variables
-  index.ts           # Main entrypoint
-```
+- `src/config/` → Environment variable loading & config  
+- `src/discord/` → Discord client, commands, events, handlers  
+- `src/github/` → GitHub App client  
+- `src/storage/` → Data storage layer (currently in-memory, future: SQLite, etc.)
+- `src/index.ts` → Main bot entrypoint  
+- `src/registerCommands.ts` → Script to register slash commands
 
 ---
 
