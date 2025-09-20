@@ -13,7 +13,7 @@ import { getGitHubClient, repoContext } from "../../github/client";
 export const CreateIssueCommand: Command = {
   data: new ChatInputCommandBuilder()
     .setName("create-issue")
-    .setDescription("Open a GitHub issue via a modal + label selector")
+    .setDescription("Open a GitHub issue via a modal form")
     .toJSON(),
 
   async execute(interaction: ChatInputCommandInteraction) {
