@@ -17,17 +17,18 @@ Create, sync, and manage GitHub issues directly from a Discord forum channel.
 
 - Interactive GitHub issue creation from Discord  
 - Label selection synced from GitHub  
+- Organized command structure with subcommands (`/utils`, `/github …`)  
 - Automatic linking between GitHub issues and Discord threads (coming soon)  
-- TypeScript + [discord.js v14](https://discord.js.org) + [Octokit](https://github.com/octokit/rest.js)  
+- TypeScript + [discord.js](https://github.com/discordjs/discord.js) + [Octokit](https://github.com/octokit/rest.js)  
 - Explicit, strongly typed event/command registration  
 - GitHub App authentication (short-lived installation tokens, no personal PATs)
 
 ## 📜 Commands
 
-| Command          | Description                                      |
-|------------------|--------------------------------------------------|
-| /ping          | Sanity check — replies with "🏓 Pong!"            |
-| /create-issue  | Opens a modal to create a GitHub issue with title, description, and labels populated from the repo |
+| Command                | Description                                        |
+|-------------------------|----------------------------------------------------|
+| `/utils ping`          | Sanity check — replies with "🏓 Pong!"             |
+| `/github create-issue` | Opens a modal to create a GitHub issue with title, description, and labels populated from the repo |
 
 ---
 
