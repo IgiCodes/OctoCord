@@ -3,6 +3,6 @@ import { IssuesCommandGroup } from "./issues/index.ts";
 
 export const GitHubCommand = defineCommand(
   "github",
-  "Github commands",
+  "GitHub commands",
   { subcommands: [IssuesCommandGroup] }
 );

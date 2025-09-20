@@ -3,6 +3,6 @@ import { CreateIssueCommand } from "./createIssue.ts";
 
 export const IssuesCommandGroup = defineSubcommandGroup(
   "issues",
-  "Github Issues commands",
+  "GitHub Issues commands",
   [CreateIssueCommand]
 );
