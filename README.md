@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./assets/OctoCord-logo.svg" alt="OctoCord Logo" width="400"/>
+  <img src="./assets/OctoCord-logo.svg" alt="OctoCord Logo" width="256"/>
 </p>
 
 # OctoCord
