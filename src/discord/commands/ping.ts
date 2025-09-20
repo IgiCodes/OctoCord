@@ -1,12 +1,16 @@
-import { SlashCommandBuilder, ChatInputCommandInteraction } from 'discord.js';
-import { Command } from '../types';
+import {
+  ChatInputCommandBuilder,
+  ChatInputCommandInteraction,
+} from "discord.js";
+import { Command } from "../types";
 
 export const PingCommand: Command = {
-  data: new SlashCommandBuilder()
-    .setName('ping')
-    .setDescription('Replies with pong!'),
+  data: new ChatInputCommandBuilder()
+    .setName("ping")
+    .setDescription("Replies with pong!")
+    .toJSON(),
 
   async execute(interaction: ChatInputCommandInteraction) {
-    await interaction.reply('🏓 Pong!');
+    await interaction.reply("🏓 Pong!");
   },
 };

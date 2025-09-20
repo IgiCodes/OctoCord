@@ -2,10 +2,11 @@ import {
   Events,
   ChatInputCommandInteraction,
   Interaction,
+  MessageFlags,
 } from 'discord.js';
 import { Event } from '../types';
 import { commands } from '../commands/registry';
-import { handleIssueModalSubmit, handleLabelSelect } from '../handlers/issueHandlers';
+import { handleIssueModalSubmit } from '../handlers/issueHandlers';
 
 export const interactionCreate: Event<typeof Events.InteractionCreate> = {
   name: Events.InteractionCreate,
@@ -25,12 +26,12 @@ export const interactionCreate: Event<typeof Events.InteractionCreate> = {
         if (interaction.replied || interaction.deferred) {
           await interaction.followUp({
             content: '⚠️ Error executing command.',
-            ephemeral: true,
+            flags: MessageFlags.Ephemeral,
           });
         } else {
           await interaction.reply({
             content: '⚠️ Error executing command.',
-            ephemeral: true,
+            flags: MessageFlags.Ephemeral,
           });
         }
       }
@@ -40,12 +41,6 @@ export const interactionCreate: Event<typeof Events.InteractionCreate> = {
     // --- Modal submit ---
     if (interaction.isModalSubmit() && interaction.customId === 'createIssueModal') {
       await handleIssueModalSubmit(interaction);
-      return;
-    }
-
-    // --- Label select menu ---
-    if (interaction.isStringSelectMenu() && interaction.customId.startsWith('createIssueLabels:')) {
-      await handleLabelSelect(interaction);
       return;
     }
   },

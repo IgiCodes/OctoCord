@@ -1,13 +1,16 @@
-import { ClientEvents } from 'discord.js';
-import { SlashCommandBuilder, ChatInputCommandInteraction } from 'discord.js';
+import {
+  ClientEventTypes,
+  ChatInputCommandInteraction,
+  RESTPostAPIChatInputApplicationCommandsJSONBody,
+} from "discord.js";
 
-export interface Event<K extends keyof ClientEvents> {
+export interface Event<K extends keyof ClientEventTypes> {
   name: K;
   once?: boolean;
-  execute: (...args: ClientEvents[K]) => Promise<void> | void;
+  execute: (...args: ClientEventTypes[K]) => Promise<void> | void;
 }
 
 export interface Command {
-  data: SlashCommandBuilder;
+  data: RESTPostAPIChatInputApplicationCommandsJSONBody;
   execute: (interaction: ChatInputCommandInteraction) => Promise<void> | void;
 }
