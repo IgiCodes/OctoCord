@@ -6,7 +6,7 @@ import {
   ChatInputCommandSubcommandGroupBuilder,
   RESTPostAPIChatInputApplicationCommandsJSONBody,
 } from "discord.js";
-import { Command, Subcommand, SubcommandGroup } from "../types";
+import { Command, Subcommand, SubcommandGroup } from "../types.ts";
 
 type SubOrGroup = Subcommand | SubcommandGroup;
 

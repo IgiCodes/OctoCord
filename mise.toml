@@ -9,7 +9,7 @@ run = "pnpm tsx watch src/index.ts"
 run = "tsc"
 
 [tasks.start]
-run = "node dist/index.js"
+run = "node --enable-source-maps dist/index.js"
 
 [tasks.test]
 run = "echo 'no tests yet 🤡'"

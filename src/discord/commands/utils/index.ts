@@ -1,5 +1,5 @@
-import { defineCommand } from "../../utils/defineCommand";
-import { PingSubcommand } from "./ping";
+import { defineCommand } from "../../utils/defineCommand.ts";
+import { PingSubcommand } from "./ping.ts";
 
 export const UtilsCommand = defineCommand("utils", "Utility commands", {
   subcommands: [PingSubcommand],

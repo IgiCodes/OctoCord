@@ -7,7 +7,7 @@ import {
   GITHUB_APP_PRIVATE_KEY_PATH,
   GITHUB_OWNER,
   GITHUB_REPO,
-} from '../config';
+} from '../config/index.ts';
 
 const privateKey = fs.readFileSync(GITHUB_APP_PRIVATE_KEY_PATH, 'utf8');
 

@@ -9,8 +9,8 @@ import {
   DISCORD_TOKEN,
   DISCORD_APP_ID,
   DISCORD_GUILD_ID,
-} from "./config";
-import { commands } from "./discord/commands/registry";
+} from "./config/index.ts";
+import { commands } from "./discord/commands/registry.ts";
 
 const rest = new REST({ version: "10" }).setToken(DISCORD_TOKEN);
 

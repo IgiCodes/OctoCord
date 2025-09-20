@@ -1,10 +1,10 @@
-import { discordClient } from './discord/client';
-import { DISCORD_TOKEN } from './config';
+import { discordClient } from './discord/client.ts';
+import { DISCORD_TOKEN } from './config/index.ts';
 
-import { ready } from './discord/events/ready';
-import { interactionCreate } from './discord/events/interactionCreate';
+import { ready } from './discord/events/ready.ts';
+import { interactionCreate } from './discord/events/interactionCreate.ts';
 
-import { Event } from './discord/types';
+import { Event } from './discord/types.ts';
 import { ClientEvents } from 'discord.js';
 
 function register<K extends keyof ClientEvents>(event: Event<K>) {

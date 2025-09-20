@@ -1,4 +1,4 @@
-import { defineSubcommand } from "../../utils/defineSubcommand";
+import { defineSubcommand } from "../../utils/defineSubcommand.ts";
 import { ChatInputCommandInteraction } from "discord.js";
 
 export const PingSubcommand = defineSubcommand(

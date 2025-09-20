@@ -5,8 +5,8 @@ import {
   LabelBuilder,
   StringSelectMenuBuilder,
 } from "discord.js";
-import { getGitHubClient, repoContext } from "../../../../github/client";
-import { defineSubcommand } from "../../../utils/defineSubcommand";
+import { getGitHubClient, repoContext } from "../../../../github/client.ts";
+import { defineSubcommand } from "../../../utils/defineSubcommand.ts";
 
 export const CreateIssueCommand = defineSubcommand(
   "create",

@@ -4,9 +4,9 @@ import {
   Interaction,
   MessageFlags,
 } from 'discord.js';
-import { Event } from '../types';
-import { commands } from '../commands/registry';
-import { handleIssueModalSubmit } from '../handlers/issueHandlers';
+import { Event } from '../types.ts';
+import { commands } from '../commands/registry.ts';
+import { handleIssueModalSubmit } from '../handlers/issueHandlers.ts';
 
 export const interactionCreate: Event<typeof Events.InteractionCreate> = {
   name: Events.InteractionCreate,

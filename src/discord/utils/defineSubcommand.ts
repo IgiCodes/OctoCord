@@ -2,7 +2,7 @@ import {
   ChatInputCommandSubcommandBuilder,
   ChatInputCommandInteraction,
 } from "discord.js";
-import { Subcommand } from "../types";
+import { Subcommand } from "../types.ts";
 
 export function defineSubcommand(
   name: string,

@@ -1,5 +1,5 @@
 import { MessageFlags, ModalSubmitInteraction } from "discord.js";
-import { getGitHubClient, repoContext } from "../../github/client";
+import { getGitHubClient, repoContext } from "../../github/client.ts";
 
 export async function handleIssueModalSubmit(interaction: ModalSubmitInteraction) {
   if (interaction.customId !== "createIssueModal") return;

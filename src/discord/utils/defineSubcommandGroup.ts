@@ -1,5 +1,5 @@
 import { ChatInputCommandSubcommandGroupBuilder } from "discord.js";
-import { Subcommand, SubcommandGroup } from "../types";
+import { Subcommand, SubcommandGroup } from "../types.ts";
 
 export function defineSubcommandGroup(
   name: string,
