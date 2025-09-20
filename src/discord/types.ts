@@ -21,8 +21,7 @@ export type Command =
   | {
       data: RESTPostAPIChatInputApplicationCommandsJSONBody;
       execute: (interaction: ChatInputCommandInteraction) => Awaitable<void>;
-      // for parent commands, we also keep a subcommand map for runtime dispatch
-      subcommands: Map<string, Subcommand>;
+      subcommands: Map<string, Subcommand | SubcommandGroup>;
     };
 
 export interface Subcommand {
@@ -34,5 +33,6 @@ export interface Subcommand {
 export interface SubcommandGroup {
   name: string;
   data: ChatInputCommandSubcommandGroupBuilder;
-  execute: (interaction: ChatInputCommandInteraction) => Awaitable<void> | void;
+  subcommands: Subcommand[];
+  execute: (interaction: ChatInputCommandInteraction) => Awaitable<void>;
 }

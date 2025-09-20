@@ -15,6 +15,7 @@ export function defineSubcommandGroup(
   return {
     name,
     data: group,
+    subcommands,
     async execute(interaction) {
       const subName = interaction.options.getSubcommand();
       const sub = subMap.get(subName);
