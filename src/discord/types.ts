@@ -4,6 +4,7 @@ import {
   RESTPostAPIChatInputApplicationCommandsJSONBody,
   ChatInputCommandSubcommandBuilder,
   Awaitable,
+  ChatInputCommandSubcommandGroupBuilder,
 } from "discord.js";
 
 export interface Event<K extends keyof ClientEventTypes> {
@@ -18,7 +19,7 @@ export type Command =
       execute: (interaction: ChatInputCommandInteraction) => Awaitable<void>;
     }
   | {
-  data: RESTPostAPIChatInputApplicationCommandsJSONBody;
+      data: RESTPostAPIChatInputApplicationCommandsJSONBody;
       execute: (interaction: ChatInputCommandInteraction) => Awaitable<void>;
       // for parent commands, we also keep a subcommand map for runtime dispatch
       subcommands: Map<string, Subcommand>;
@@ -28,4 +29,10 @@ export interface Subcommand {
   name: string;
   data: ChatInputCommandSubcommandBuilder;
   execute: (interaction: ChatInputCommandInteraction) => Awaitable<void>;
+}
+
+export interface SubcommandGroup {
+  name: string;
+  data: ChatInputCommandSubcommandGroupBuilder;
+  execute: (interaction: ChatInputCommandInteraction) => Awaitable<void> | void;
 }
