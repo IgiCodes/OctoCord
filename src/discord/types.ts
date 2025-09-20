@@ -7,10 +7,9 @@ import {
   ChatInputCommandSubcommandGroupBuilder,
 } from "discord.js";
 
-export interface Event<K extends keyof ClientEventTypes> {
-  name: K;
-  once?: boolean;
-  execute: (...args: ClientEventTypes[K]) => Awaitable<void>;
+export interface Event<EventName extends keyof ClientEventTypes> {
+  name: EventName;
+  execute: (...args: ClientEventTypes[EventName]) => Awaitable<void>;
 }
 
 export type Command =

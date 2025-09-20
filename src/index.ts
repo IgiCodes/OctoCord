@@ -4,22 +4,14 @@ import { DISCORD_TOKEN } from './config/index.ts';
 import { ready } from './discord/events/ready.ts';
 import { interactionCreate } from './discord/events/interactionCreate.ts';
 
-import { Event } from './discord/types.ts';
-import { ClientEvents } from 'discord.js';
+import { Events } from 'discord.js';
 
-function register<K extends keyof ClientEvents>(event: Event<K>) {
-  if (event.once) {
-    discordClient.once(event.name, (...args: ClientEvents[K]) => {
-      event.execute(...args);
-    });
-  } else {
-    discordClient.on(event.name, (...args: ClientEvents[K]) => {
-      event.execute(...args);
-    });
-  }
-}
+discordClient.once(Events.ClientReady, (client) => {
+  ready.execute(client);
+});
 
-register(ready);
-register(interactionCreate);
+discordClient.on(Events.InteractionCreate, (interaction) => {
+  interactionCreate.execute(interaction);
+});
 
 discordClient.login(DISCORD_TOKEN);
