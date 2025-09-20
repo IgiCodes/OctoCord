@@ -28,7 +28,7 @@ Create, sync, and manage GitHub issues directly from a Discord forum channel.
 | Command                | Description                                        |
 |-------------------------|----------------------------------------------------|
 | `/utils ping`          | Sanity check — replies with "🏓 Pong!"             |
-| `/github create-issue` | Opens a modal to create a GitHub issue with title, description, and labels populated from the repo |
+| `/github issues create` | Opens a modal to create a GitHub issue with title, description, and labels populated from the repo |
 
 ---
 
