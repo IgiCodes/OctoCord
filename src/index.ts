@@ -14,4 +14,15 @@ discordClient.on(Events.InteractionCreate, (interaction) => {
   interactionCreate.execute(interaction);
 });
 
-discordClient.login(DISCORD_TOKEN);
+function shutdown(signal: string) {
+  console.log(`\n⚠️  Received ${signal}, shutting down gracefully...`);
+  discordClient.destroy();
+  process.exit(0);
+}
+
+process.on("SIGINT", () => shutdown("SIGINT"));
+process.on("SIGTERM", () => shutdown("SIGTERM"));
+
+discordClient.login(DISCORD_TOKEN).catch((err) => {
+  console.error("❌ Failed to login:", err);
+});
