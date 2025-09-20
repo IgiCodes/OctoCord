@@ -36,6 +36,7 @@ function logCommandTree(
         console.log(
           `${prefix}   ↳ /${cmd.name} ${group.name} — ${group.description}`
         );
+        count++;
         if (group.options) {
           for (const sub of group.options) {
             console.log(
