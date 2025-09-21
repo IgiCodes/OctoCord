@@ -1,22 +1,55 @@
-import 'dotenv/config';
+import "dotenv/config";
+import { z } from "zod";
 
-export const DISCORD_TOKEN = process.env.DISCORD_TOKEN ?? '';
-export const DISCORD_APP_ID = process.env.DISCORD_APP_ID ?? '';
-export const DISCORD_PUBLIC_KEY = process.env.DISCORD_PUBLIC_KEY ?? '';
-export const DISCORD_GUILD_ID = process.env.DISCORD_GUILD_ID ?? '';
-export const GITHUB_APP_ID = process.env.GITHUB_APP_ID ?? '';
-export const GITHUB_APP_INSTALLATION_ID = process.env.GITHUB_APP_INSTALLATION_ID ?? '';
-export const GITHUB_APP_PRIVATE_KEY_PATH = process.env.GITHUB_APP_PRIVATE_KEY_PATH ?? '';
-export const GITHUB_OWNER = process.env.GITHUB_OWNER ?? '';
-export const GITHUB_REPO = process.env.GITHUB_REPO ?? '';
+// Define schema for all env vars
+const EnvSchema = z.object({
+  // Discord
+  DISCORD_TOKEN: z.string().min(1, "DISCORD_TOKEN is required"),
+  DISCORD_APP_ID: z.string().min(1, "DISCORD_APP_ID is required"),
+  DISCORD_PUBLIC_KEY: z.string().min(1, "DISCORD_PUBLIC_KEY is required"),
+  DISCORD_GUILD_ID: z.string().optional(),
 
+  // GitHub
+  GITHUB_APP_ID: z.coerce.number().int().positive(),
+  GITHUB_APP_INSTALLATION_ID: z.coerce.number().int().positive(),
+  GITHUB_APP_PRIVATE_KEY_PATH: z.string().min(1, "GITHUB_APP_PRIVATE_KEY_PATH is required"),
+  GITHUB_OWNER: z.string().min(1, "GITHUB_OWNER is required"),
+  GITHUB_REPO: z.string().min(1, "GITHUB_REPO is required"),
 
-if (!DISCORD_TOKEN) throw new Error('Missing DISCORD_TOKEN in env');
-if (!DISCORD_APP_ID) throw new Error('Missing DISCORD_APP_ID in env');
-if (!DISCORD_PUBLIC_KEY) throw new Error('Missing DISCORD_PUBLIC_KEY in env');
-if (!DISCORD_GUILD_ID) throw new Error('Missing DISCORD_GUILD_ID in env');
-if (!GITHUB_APP_ID) throw new Error('Missing GITHUB_APP_ID in env');
-if (!GITHUB_APP_INSTALLATION_ID) throw new Error('Missing GITHUB_APP_INSTALLATION_ID in env');
-if (!GITHUB_APP_PRIVATE_KEY_PATH) throw new Error('Missing GITHUB_APP_PRIVATE_KEY_PATH in env');
-if (!GITHUB_OWNER) throw new Error('Missing GITHUB_OWNER in env');
-if (!GITHUB_REPO) throw new Error('Missing GITHUB_REPO in env');
+  // Example flags
+  DRY_RUN: z
+    .stringbool()
+    .default(false),
+  DEBUG_PAYLOAD: z
+    .stringbool()
+    .default(false),
+  FORCE_GLOBAL: z
+    .stringbool()
+    .default(false),
+});
+
+// Validate process.env
+const parsed = EnvSchema.safeParse(process.env);
+
+if (!parsed.success) {
+  console.error("❌ Invalid environment configuration:");
+  console.error(parsed.error.format());
+  process.exit(1);
+}
+
+export const env = parsed.data;
+
+export const {
+  DISCORD_TOKEN,
+  DISCORD_APP_ID,
+  DISCORD_PUBLIC_KEY,
+  DISCORD_GUILD_ID,
+  GITHUB_APP_ID,
+  GITHUB_APP_INSTALLATION_ID,
+  GITHUB_APP_PRIVATE_KEY_PATH,
+  GITHUB_OWNER,
+  GITHUB_REPO,
+  DRY_RUN,
+  DEBUG_PAYLOAD,
+  FORCE_GLOBAL
+} = env;
