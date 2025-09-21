@@ -143,16 +143,6 @@ GET /healthz
 
 Docker Compose uses this for automatic restart if the bot crashes.
 
-### Register Slash Commands in Docker
-
-To push commands to Discord from inside the container:
-
-```sh
-mise run docker-register-commands
-```
-
-This will execute dist/utils/registerCommands.js within the running container.
-
 ---
 
 ## 📂 Project Structure

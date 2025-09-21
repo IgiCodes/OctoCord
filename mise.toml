@@ -36,6 +36,3 @@ run = "docker compose down"
 
 [tasks.docker-logs]
 run = "docker compose logs -f octocord"
-
-[tasks.docker-register-commands]
-run = "docker compose exec octocord node dist/utils/registerCommands.js"
