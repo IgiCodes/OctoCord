@@ -164,4 +164,5 @@ dist
 
 # Local dev files
 mise.local.toml
-octocordapp.private-key.pem
+*.pem
+.env*

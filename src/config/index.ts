@@ -12,7 +12,7 @@ const EnvSchema = z.object({
   // GitHub
   GITHUB_APP_ID: z.coerce.number().int().positive(),
   GITHUB_APP_INSTALLATION_ID: z.coerce.number().int().positive(),
-  GITHUB_APP_PRIVATE_KEY_PATH: z.string().min(1, "GITHUB_APP_PRIVATE_KEY_PATH is required"),
+  GITHUB_APP_PRIVATE_KEY_PEM: z.string().min(1, "GITHUB_APP_PRIVATE_KEY_PEM is required"),
   GITHUB_OWNER: z.string().min(1, "GITHUB_OWNER is required"),
   GITHUB_REPO: z.string().min(1, "GITHUB_REPO is required"),
 
@@ -46,7 +46,7 @@ export const {
   DISCORD_GUILD_ID,
   GITHUB_APP_ID,
   GITHUB_APP_INSTALLATION_ID,
-  GITHUB_APP_PRIVATE_KEY_PATH,
+  GITHUB_APP_PRIVATE_KEY_PEM,
   GITHUB_OWNER,
   GITHUB_REPO,
   DRY_RUN,
