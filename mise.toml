@@ -15,4 +15,4 @@ run = "node --enable-source-maps dist/index.js"
 run = "echo 'no tests yet 🤡'"
 
 [tasks.register-commands]
-run = "pnpm tsx src/registerCommands.ts"
+run = "pnpm tsx src/utils/registerCommands.ts"
