@@ -1,4 +1,5 @@
 [env]
+FORCE_COLOR=1 # Enable full colour terminal outputs when running with mise
 DISCORD_TOKEN = { value = "your-discord-bot-token", redact = true }
 DISCORD_APP_ID = { value = "your-discord-app-id", redact = true }
 DISCORD_PUBLIC_KEY = { value = "your-discord-public-key", redact = true }

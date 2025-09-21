@@ -14,10 +14,15 @@
   "dependencies": {
     "@octokit/auth-app": "^8.1.0",
     "@octokit/rest": "^22.0.0",
+    "chalk": "^5.6.2",
     "discord.js": "15.0.0-dev.1757851336-b66f52f9a",
-    "dotenv": "^17.2.2"
+    "dotenv": "^17.2.2",
+    "figlet": "^1.9.3",
+    "supports-color": "^10.2.2",
+    "zod": "^4.1.11"
   },
   "devDependencies": {
+    "@types/figlet": "^1.7.0",
     "@types/node": "^24.5.2",
     "ts-node": "^10.9.2",
     "tsx": "^4.20.5",
