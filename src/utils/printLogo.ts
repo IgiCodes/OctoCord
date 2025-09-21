@@ -12,7 +12,7 @@ export function printLogo() {
   const supportsAnsi = supportsColor.stdout;
   const file = supportsAnsi
     ? "OctoCord-logo-ansi.txt"
-    : "OctoCord-logo-ascii-80.txt";
+    : "OctoCord-logo-ascii-60.txt";
 
   try {
     const logo = loadLogo(file);
