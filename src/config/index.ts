@@ -26,6 +26,7 @@ const EnvSchema = z.object({
   DRY_RUN: z.stringbool().default(false),
   DEBUG_PAYLOAD: z.stringbool().default(false),
   FORCE_GLOBAL: z.stringbool().default(false),
+  UNREGISTER_COMMANDS: z.stringbool().default(false),
 });
 
 // Validate process.env
@@ -54,4 +55,5 @@ export const {
   DRY_RUN,
   DEBUG_PAYLOAD,
   FORCE_GLOBAL,
+  UNREGISTER_COMMANDS,
 } = env;

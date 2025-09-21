@@ -12,6 +12,7 @@ import {
   DRY_RUN,
   DEBUG_PAYLOAD,
   FORCE_GLOBAL,
+  UNREGISTER_COMMANDS,
 } from "../config/index.ts";
 import { commands } from "../discord/commands/registry.ts";
 import chalk from "chalk";
@@ -103,7 +104,39 @@ function logRegistrationResult(
  * Entrypoint.
  */
 async function main() {
-  console.log(chalk.gray("[registerCommands] running…"))
+  console.log(chalk.gray("[registerCommands] running…"));
+
+  if (UNREGISTER_COMMANDS) {
+    try {
+      if (!FORCE_GLOBAL && DISCORD_GUILD_ID) {
+        await rest.put(
+          Routes.applicationGuildCommands(DISCORD_APP_ID, DISCORD_GUILD_ID),
+          { body: [] }
+        );
+        console.log(
+          chalk.yellow.bold(
+            `\n🧹 Cleared all guild commands for guild ${chalk.green(
+              DISCORD_GUILD_ID
+            )}\n`
+          )
+        );
+      } else {
+        await rest.put(Routes.applicationCommands(DISCORD_APP_ID), { body: [] });
+        console.log(
+          chalk.yellow.bold("\n🧹 Cleared all global commands\n")
+        );
+      }
+    } catch (err) {
+      console.error(
+        chalk.red.bold("\n❌ Failed to unregister commands:"),
+        chalk.red(err instanceof Error ? err.message : String(err)),
+        "\n"
+      );
+      process.exit(1);
+    }
+    return;
+  }
+
   try {
     const body: RESTPostAPIChatInputApplicationCommandsJSONBody[] = Array.from(
       commands.values()

@@ -159,22 +159,23 @@ Docker Compose uses this for automatic restart if the bot crashes.
 
 ## ⚙️ Environment Variables
 
-| Variable                     | Required | Default | Description                                                                 |
-| ---------------------------- | -------- | ------- | --------------------------------------------------------------------------- |
-| `PORT`                       | Yes      | *none*  | Internal port the bot listens on (healthcheck endpoint runs here).          |
-| `HOST_PORT`                  | Yes      | *none*  | Host machine port mapped via Docker Compose.                                |
-| `DISCORD_TOKEN`              | Yes      | *none*  | Bot token from your Discord application.                                    |
-| `DISCORD_APP_ID`             | Yes      | *none*  | Discord application ID.                                                     |
-| `DISCORD_PUBLIC_KEY`         | Yes      | *none*  | Discord app public key (used for interactions/webhooks).                    |
-| `DISCORD_GUILD_ID`           | No       | unset   | Guild/server ID for development — if not set, commands register globally.   |
-| `GITHUB_APP_ID`              | Yes      | *none*  | GitHub App ID.                                                              |
-| `GITHUB_APP_INSTALLATION_ID` | Yes      | *none*  | Installation ID of the GitHub App on your repo/org.                         |
-| `GITHUB_APP_PRIVATE_KEY_PEM` | Yes      | *none*  | Private key string for the GitHub App (PEM contents).                       |
-| `GITHUB_OWNER`               | Yes      | *none*  | GitHub org or username that owns the repo.                                  |
-| `GITHUB_REPO`                | Yes      | *none*  | GitHub repo name.                                                           |
-| `DRY_RUN`                    | No       | `false` | If `true`, simulate command registration without sending to Discord.        |
-| `DEBUG_PAYLOAD`              | No       | `false` | If `true`, logs the JSON payload sent to Discord during registration.       |
-| `FORCE_GLOBAL`               | No       | `false` | If `true`, forces commands to register globally even if `DISCORD_GUILD_ID`. |
+| Variable                     | Required | Default | Description                                                                                                |
+| ---------------------------- | -------- | ------- | -----------------------------------------------------------------------------------------------------------|
+| `PORT`                       | Yes      | *none*  | Internal port the bot listens on (healthcheck endpoint runs here).                                         |
+| `HOST_PORT`                  | Yes      | *none*  | Host machine port mapped via Docker Compose.                                                               |
+| `DISCORD_TOKEN`              | Yes      | *none*  | Bot token from your Discord application.                                                                   |
+| `DISCORD_APP_ID`             | Yes      | *none*  | Discord application ID.                                                                                    |
+| `DISCORD_PUBLIC_KEY`         | Yes      | *none*  | Discord app public key (used for interactions/webhooks).                                                   |
+| `DISCORD_GUILD_ID`           | No       | unset   | Guild/server ID for development — if not set, commands register globally.                                  |
+| `GITHUB_APP_ID`              | Yes      | *none*  | GitHub App ID.                                                                                             |
+| `GITHUB_APP_INSTALLATION_ID` | Yes      | *none*  | Installation ID of the GitHub App on your repo/org.                                                        |
+| `GITHUB_APP_PRIVATE_KEY_PEM` | Yes      | *none*  | Private key string for the GitHub App (PEM contents).                                                      |
+| `GITHUB_OWNER`               | Yes      | *none*  | GitHub org or username that owns the repo.                                                                 |
+| `GITHUB_REPO`                | Yes      | *none*  | GitHub repo name.                                                                                          |
+| `DRY_RUN`                    | No       | `false` | If `true`, simulate command registration without sending to Discord.                                       |
+| `DEBUG_PAYLOAD`              | No       | `false` | If `true`, logs the JSON payload sent to Discord during registration.                                      |
+| `FORCE_GLOBAL`               | No       | `false` | If `true`, forces commands to register globally even if `DISCORD_GUILD_ID`.                                |
+| `UNREGISTER_COMMANDS`        | No       | `false` | If `true`, will unregister commands from discord (global if `FORCE_GLOBAL` or `DISCORD_GUID_ID` is unset). |
 
 ---
 
