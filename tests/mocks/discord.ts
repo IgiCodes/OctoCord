@@ -1,7 +1,11 @@
-import { mock, mockDeep } from "vitest-mock-extended";
-import type { ChatInputCommandInteraction, Client } from "discord.js";
+import { mockDeep } from "vitest-mock-extended";
+import { ApplicationCommandType, type ChatInputCommandInteraction, type Client } from "discord.js";
 
-export const mockInteraction = mockDeep<ChatInputCommandInteraction>();
-mockInteraction.isChatInputCommand.mockReturnValue(true);
+export const createMockChatInputCommandInteraction = () => {
+  const mock = mockDeep<ChatInputCommandInteraction>();
+  mock.isChatInputCommand.mockReturnValue(true);
+  mock.commandType = ApplicationCommandType.ChatInput;
 
-export const mockClient = mock<Client>();
+  return mock;
+};
+
