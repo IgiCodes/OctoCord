@@ -1,15 +1,12 @@
+import process from "process";
 import { discordClient } from "./discord/client.ts";
 import { DISCORD_TOKEN } from "./config/index.ts";
-
 import { ready } from "./discord/events/ready.ts";
 import { interactionCreate } from "./discord/events/interactionCreate.ts";
-
 import { Events } from "discord.js";
-
 import { printBanner } from "./utils/printBanner.ts";
-
-import process from "process";
 import { printLogo } from "./utils/printLogo.ts";
+import { startServer } from "./server.ts";
 
 function registerEvents() {
   discordClient.once(Events.ClientReady, (client) => {
@@ -33,6 +30,8 @@ async function main() {
   registerEvents();
   process.on("SIGINT", () => shutdown("SIGINT"));
   process.on("SIGTERM", () => shutdown("SIGTERM"));
+
+  startServer();
 
   discordClient.login(DISCORD_TOKEN).catch((err) => {
     console.error("❌ Failed to login:", err);

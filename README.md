@@ -58,7 +58,7 @@ cp mise.example.toml mise.local.toml
 
 Update the values inside with:
 - **Discord** → bot token, app ID, guild ID  
-- **GitHub App** → app ID, installation ID, PEM private key path, repo owner, repo name  
+- **GitHub App** → app ID, installation ID, PEM private key (string form), repo owner, repo name  
 
 ---
 
@@ -73,7 +73,7 @@ mise run dev
 Register slash commands with Discord:
 
 ```sh
-mise run register
+mise run register-commands
 ```
 
 Build for production:
@@ -90,6 +90,71 @@ mise run start
 
 ---
 
+## 🐳 Docker
+
+The project includes a ready-to-use `Dockerfile` and `compose.yml`.  
+Docker workflows are integrated into `mise` tasks.
+
+### Build & Run with Docker
+
+Bring up the bot in Docker (generates `.env` automatically):
+
+```sh
+mise run docker-up
+```
+
+Start the bot in detached mode:
+
+```sh
+mise run docker-start
+```
+
+Stop and remove containers:
+
+```sh
+mise run docker-down
+```
+
+View logs from the running container:
+
+```sh
+mise run docker-logs
+```
+
+Rebuild the image manually (without running):
+
+```sh
+mise run docker-build
+```
+
+### Environment Variables
+
+- A `.env` file is generated from `mise` tasks (`mise run generate-env`).  
+- The `.env` file is mounted automatically into the container by `compose.yml`.  
+- Secrets (Discord token, GitHub keys, etc.) are pulled from this file.
+
+### Healthcheck
+
+The container exposes a health endpoint:
+
+```
+GET /healthz
+```
+
+Docker Compose uses this for automatic restart if the bot crashes.
+
+### Register Slash Commands in Docker
+
+To push commands to Discord from inside the container:
+
+```sh
+mise run docker-register-commands
+```
+
+This will execute dist/utils/registerCommands.js within the running container.
+
+---
+
 ## 📂 Project Structure
 
 - `src/config/` → Environment variable loading & config  
@@ -98,6 +163,28 @@ mise run start
 - `src/storage/` → Data storage layer (currently in-memory, future: SQLite, etc.)
 - `src/index.ts` → Main bot entrypoint  
 - `src/registerCommands.ts` → Script to register slash commands
+- `assets/` → Logo and static assets (bundled into Docker image)
+
+---
+
+## ⚙️ Environment Variables
+
+| Variable                     | Required | Default | Description                                                                 |
+| ---------------------------- | -------- | ------- | --------------------------------------------------------------------------- |
+| `PORT`                       | Yes      | *none*  | Internal port the bot listens on (healthcheck endpoint runs here).          |
+| `HOST_PORT`                  | Yes      | *none*  | Host machine port mapped via Docker Compose.                                |
+| `DISCORD_TOKEN`              | Yes      | *none*  | Bot token from your Discord application.                                    |
+| `DISCORD_APP_ID`             | Yes      | *none*  | Discord application ID.                                                     |
+| `DISCORD_PUBLIC_KEY`         | Yes      | *none*  | Discord app public key (used for interactions/webhooks).                    |
+| `DISCORD_GUILD_ID`           | No       | unset   | Guild/server ID for development — if not set, commands register globally.   |
+| `GITHUB_APP_ID`              | Yes      | *none*  | GitHub App ID.                                                              |
+| `GITHUB_APP_INSTALLATION_ID` | Yes      | *none*  | Installation ID of the GitHub App on your repo/org.                         |
+| `GITHUB_APP_PRIVATE_KEY_PEM` | Yes      | *none*  | Private key string for the GitHub App (PEM contents).                       |
+| `GITHUB_OWNER`               | Yes      | *none*  | GitHub org or username that owns the repo.                                  |
+| `GITHUB_REPO`                | Yes      | *none*  | GitHub repo name.                                                           |
+| `DRY_RUN`                    | No       | `false` | If `true`, simulate command registration without sending to Discord.        |
+| `DEBUG_PAYLOAD`              | No       | `false` | If `true`, logs the JSON payload sent to Discord during registration.       |
+| `FORCE_GLOBAL`               | No       | `false` | If `true`, forces commands to register globally even if `DISCORD_GUILD_ID`. |
 
 ---
 

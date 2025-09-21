@@ -6,7 +6,7 @@ pnpm = "10.17.0"
 run = "pnpm tsx watch src/index.ts"
 
 [tasks.build]
-run = "tsc"
+run = "pnpm build"
 
 [tasks.start]
 run = "node --enable-source-maps dist/index.js"
@@ -16,3 +16,26 @@ run = "echo 'no tests yet 🤡'"
 
 [tasks.register-commands]
 run = "pnpm tsx src/utils/registerCommands.ts"
+
+[tasks.generate-env]
+run = "mise env > .env"
+
+[tasks.docker-build]
+run = "docker compose build"
+
+[tasks.docker-up]
+depends = ["generate-env"]
+run = "docker compose up --build"
+
+[tasks.docker-start]
+depends = ["generate-env"]
+run = "docker compose up -d --build"
+
+[tasks.docker-down]
+run = "docker compose down"
+
+[tasks.docker-logs]
+run = "docker compose logs -f octocord"
+
+[tasks.docker-register-commands]
+run = "docker compose exec octocord node dist/utils/registerCommands.js"

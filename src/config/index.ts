@@ -3,6 +3,10 @@ import { z } from "zod";
 
 // Define schema for all env vars
 const EnvSchema = z.object({
+  // App settings
+  PORT: z.coerce.number().int().positive(),
+  HOST_PORT: z.coerce.number().int().positive(),
+
   // Discord
   DISCORD_TOKEN: z.string().min(1, "DISCORD_TOKEN is required"),
   DISCORD_APP_ID: z.string().min(1, "DISCORD_APP_ID is required"),
@@ -12,20 +16,16 @@ const EnvSchema = z.object({
   // GitHub
   GITHUB_APP_ID: z.coerce.number().int().positive(),
   GITHUB_APP_INSTALLATION_ID: z.coerce.number().int().positive(),
-  GITHUB_APP_PRIVATE_KEY_PEM: z.string().min(1, "GITHUB_APP_PRIVATE_KEY_PEM is required"),
+  GITHUB_APP_PRIVATE_KEY_PEM: z
+    .string()
+    .min(1, "GITHUB_APP_PRIVATE_KEY_PEM is required"),
   GITHUB_OWNER: z.string().min(1, "GITHUB_OWNER is required"),
   GITHUB_REPO: z.string().min(1, "GITHUB_REPO is required"),
 
-  // Example flags
-  DRY_RUN: z
-    .stringbool()
-    .default(false),
-  DEBUG_PAYLOAD: z
-    .stringbool()
-    .default(false),
-  FORCE_GLOBAL: z
-    .stringbool()
-    .default(false),
+  // Debug flags
+  DRY_RUN: z.stringbool().default(false),
+  DEBUG_PAYLOAD: z.stringbool().default(false),
+  FORCE_GLOBAL: z.stringbool().default(false),
 });
 
 // Validate process.env
@@ -40,6 +40,8 @@ if (!parsed.success) {
 export const env = parsed.data;
 
 export const {
+  PORT,
+  HOST_PORT,
   DISCORD_TOKEN,
   DISCORD_APP_ID,
   DISCORD_PUBLIC_KEY,
@@ -51,5 +53,5 @@ export const {
   GITHUB_REPO,
   DRY_RUN,
   DEBUG_PAYLOAD,
-  FORCE_GLOBAL
+  FORCE_GLOBAL,
 } = env;

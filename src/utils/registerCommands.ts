@@ -103,6 +103,7 @@ function logRegistrationResult(
  * Entrypoint.
  */
 async function main() {
+  console.log(chalk.gray("[registerCommands] running…"))
   try {
     const body: RESTPostAPIChatInputApplicationCommandsJSONBody[] = Array.from(
       commands.values()

@@ -1,0 +1,42 @@
+services:
+  octocord:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: octocord-bot
+    restart: unless-stopped
+
+    env_file:
+      - .env
+    environment:
+      - NODE_ENV=production
+
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:${PORT}/healthz"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 40s
+
+    ports:
+      - "${HOST_PORT:-3000}:${PORT:-3000}"
+
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+
+    mem_limit: 512m
+    cpus: 0.5
+
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+volumes:
+  octocord-data:
+networks:
+  default:
+    name: octocord-network
