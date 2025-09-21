@@ -24,10 +24,13 @@
   "devDependencies": {
     "@types/figlet": "^1.7.0",
     "@types/node": "^24.5.2",
+    "@vitest/coverage-v8": "^3.2.4",
     "ts-node": "^10.9.2",
     "tsup": "^8.5.0",
     "tsx": "^4.20.5",
-    "typescript": "^5.9.2"
+    "typescript": "^5.9.2",
+    "vitest": "^3.2.4",
+    "vitest-mock-extended": "^3.1.0"
   },
   "scripts": {
     "build": "tsup"

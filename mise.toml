@@ -12,7 +12,19 @@ run = "pnpm build"
 run = "node --enable-source-maps dist/index.js"
 
 [tasks.test]
-run = "echo 'no tests yet 🤡'"
+run = "pnpm vitest"
+
+[tasks.test-run]
+run = "pnpm vitest run"
+
+[tasks.test-coverage]
+run = "pnpm vitest run --coverage"
+
+[tasks.test-watch]
+run = "pnpm vitest --watch"
+
+[tasks.test-ui]
+run = "pnpm vitest --ui"
 
 [tasks.register-commands]
 run = "pnpm tsx src/utils/registerCommands.ts"
