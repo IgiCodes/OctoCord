@@ -7,7 +7,7 @@ deno = "2.5.1"
 run = "deno run dev"
 
 [tasks.register-commands]
-run = "pnpm tsx src/utils/registerCommands.ts"
+run = "deno run src/utils/registerCommands.ts"
 
 [tasks.generate-env]
 run = "mise env > .env"

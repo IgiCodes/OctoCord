@@ -1,4 +1,13 @@
 {
-    "deno.path": "/home/igi/.local/share/mise/shims/deno",
-    "deno.enable": true
+  "deno.path": "/home/igi/.local/share/mise/shims/deno",
+  "deno.enable": true,
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "denoland.vscode-deno",
+  "editor.formatOnPaste": true,
+  "editor.formatOnSaveMode": "file",
+  "editor.formatOnType": true,
+  "editor.tabSize": 4,
+  "debug.javascript.defaultRuntimeExecutable": {
+    "pwa-node": "${workspaceFolder}/.vscode/mise-tools/node"
+  }
 }

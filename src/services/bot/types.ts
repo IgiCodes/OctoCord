@@ -12,8 +12,17 @@ const desiredPropertiesObject = createDesiredPropertiesObject({
     tag: true,
     discriminator: true,
   },
-})
+  interaction: {
+    id: true,
+    data: true,
+    type: true,
+    token: true,
+    channelId: true,
+  },
+});
 
-export interface BotDesiredProperties extends Required<typeof desiredPropertiesObject> {}
+export interface BotDesiredProperties
+  extends Required<typeof desiredPropertiesObject> {}
 
-export const desiredProperties = desiredPropertiesObject as BotDesiredProperties;
+export const desiredProperties =
+  desiredPropertiesObject as BotDesiredProperties;

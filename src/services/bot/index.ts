@@ -1,11 +1,12 @@
-import { createBot } from '@discordeno/bot'
+import { createBot } from "@discordeno/bot";
 import { getEnv } from "@/config";
-import { desiredProperties } from "@/utils/types.ts";
+import { desiredProperties } from "./types.ts";
 
-export const Bot = createBot({
+import events from "./events/index.ts";
+
+export const bot = createBot({
   token: getEnv().DISCORD_TOKEN,
   desiredProperties,
-  events: {
-    ready: ({ shardId, user }) => console.log(`🤖 Bot ready: Shard ${shardId}, Username: ${user.username}#${user.discriminator}`),
-  },
-})
+});
+
+bot.events = events;

@@ -1,11 +1,11 @@
 import { printBanner, printLogo } from "@/utils";
 import { startServer, stopServer } from "@/services/api/server.ts";
-import { Bot } from "@/services/bot/index.ts";
+import { bot } from "@/services/bot/index.ts";
 
 async function shutdown(signal: string) {
   console.log(`\n⚠️ Received ${signal}, shutting down gracefully...`);
   stopServer(signal);
-  await Bot.shutdown();
+  await bot.shutdown();
   Deno.exit(0);
 }
 
@@ -17,7 +17,7 @@ async function main() {
   Deno.addSignalListener("SIGTERM", () => shutdown("SIGTERM"));
 
   startServer();
-  await Bot.start();
+  await bot.start();
 }
 
 await main();
