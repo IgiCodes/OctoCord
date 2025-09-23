@@ -1,21 +1,24 @@
-import fs from "fs";
-import path from "path";
-import supportsColor from "supports-color";
+import { join } from "@std/path";
 
-function loadLogo(file: string): string {
-  const logoPath = path.resolve(process.cwd(), "assets", file);
-  const raw = fs.readFileSync(logoPath, "utf8");
+/**
+ * Load a logo file and replace escaped `\e` with real ANSI escapes.
+ */
+async function loadLogo(file: string): Promise<string> {
+  const logoPath = join(Deno.cwd(), "assets", file);
+  const raw = await Deno.readTextFile(logoPath);
   return raw.replace(/\\e/g, "\x1b");
 }
 
-export function printLogo() {
-  const supportsAnsi = supportsColor.stdout;
-  const file = supportsAnsi
+/**
+ * Prints the logo, picking ANSI or ASCII version depending on terminal support.
+ */
+export async function printLogo() {
+  const file = !Deno.noColor
     ? "OctoCord-logo-ansi.txt"
     : "OctoCord-logo-ascii-60.txt";
 
   try {
-    const logo = loadLogo(file);
+    const logo = await loadLogo(file);
     console.log(logo);
   } catch {
     console.warn("⚠️ Failed to load logo file, skipping.");

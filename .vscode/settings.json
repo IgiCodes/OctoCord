@@ -1,5 +1,4 @@
 {
-    "debug.javascript.defaultRuntimeExecutable": {
-        "pwa-node": "${workspaceFolder}/.vscode/mise-tools/node"
-    }
+    "deno.path": "/home/igi/.local/share/mise/shims/deno",
+    "deno.enable": true
 }
